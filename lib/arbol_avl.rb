@@ -4,16 +4,20 @@
 
 require_relative "NodoB.rb"
 require_relative "metodos_arboles.rb"
-
+/clase para crear un arbol AVL, hereda de la clase metodos para arboles/
 class Arbol_avl < MetodosArboles
+  #atributos de la clase, esta es la raiz del arbol
   attr_accessor :_root
   
+  #metodos privados de la clase
   private
     
+    /metodo para encontrar el datos mayor entre la comparacion de varios/
     def mayor(*datos)
       return datos.max
     end
     
+    /metodo para encontrar la altura o profundidad del nodo/
     def height(pHder,pHizq)
       if(pHizq!=nil && pHder!=nil)
         return mayor(pHizq.getDepth,pHder.getDepth)+1;
@@ -26,6 +30,7 @@ class Arbol_avl < MetodosArboles
       end
     end
     
+    /metodo para encontrar el factor de equilibrio/
     def factorEquilibrio(pHder,pHizq)
       if(pHizq!=nil && pHder!=nil)
         return pHizq.getDepth()-pHder.getDepth();
@@ -38,11 +43,14 @@ class Arbol_avl < MetodosArboles
       end
     end
 
+    /metodo para revisar que el arbol se encuentre valanceado/
     def revizar()
       tmp=@_root
       revizarAux(tmp)
     end
     
+    /metodo recursivo auxiliar para revisar que el arbol se 
+    encuentre valanceado/
     def revizarAux(pNodo)
       if(pNodo==nil)
           return;
@@ -82,22 +90,27 @@ class Arbol_avl < MetodosArboles
       end
     end
     
+    /rotacion sobre escrita del padre/
     def rotacionIzq(pNodo)
       return super
     end
     
+    /rotacion sobre escrita del padre/
     def rotacionDer(pNodo)
       return super
     end
     
+    /rotacion sobre escrita del padre/
     def rotacionDDer(pNodo)
       return super
     end
     
+    /rotacion sobre escrita del padre/
     def rotacionDIzq(pNodo)
       return super
     end
     
+    /metodo recursivo auxiliar para encontrar el nodo en un arbol/
     def findAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         return true
@@ -115,7 +128,9 @@ class Arbol_avl < MetodosArboles
         end
       end
     end
-
+    
+    /metodo para encontrar el menor de los mayores desde un nodo
+    cualquiera en el arbol/
     def minMax(pNodo)
       if(pNodo.getHizq==nil)
         return pNodo
@@ -126,6 +141,7 @@ class Arbol_avl < MetodosArboles
       end
     end
 
+    /metodo recursivo auxiliar para realizar una eliminacion en el arbol/
     def borrarAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         if(pNodo.getHizq==nil)
@@ -171,6 +187,7 @@ class Arbol_avl < MetodosArboles
       end
     end
 
+    /metodo para realizar una insercion en el arbol/
     def insertAux(pDato,nodo_tmp)
       if(nodo_tmp.getDato>pDato)
         if (nodo_tmp.getHizq==nil)
@@ -189,6 +206,7 @@ class Arbol_avl < MetodosArboles
       end
     end
     
+    /metodo para realizar una impresion del contenido del arbol/
     def imprimirAux(pNodo)
       if(pNodo==nil)
         return
@@ -197,8 +215,10 @@ class Arbol_avl < MetodosArboles
       puts pNodo.getDato.to_s
       imprimirAux(pNodo.getHder)
     end
-    
+  
+  #metodos publicos del arbol
   public
+    /metodo para realizar una insercion en el arbol/
     def insertar(pDato)
       if (@_root==nil)
         @_root=NodoB.new(pDato)
@@ -208,6 +228,7 @@ class Arbol_avl < MetodosArboles
       revizar()
     end
     
+    /metodo para realizar una eliminacion en el arbol/
     def borrar(pDato)
       if(@_root==nil)
         return
@@ -217,6 +238,7 @@ class Arbol_avl < MetodosArboles
       revizar()
     end
     
+    /metodo para realizar una busqueda en el arbol/
     def buscar(pDato)
       if(@_root.getDato==pDato)
         return true
@@ -225,6 +247,7 @@ class Arbol_avl < MetodosArboles
       end
     end
 
+    /metodo para realizar una impresion de los datos del arbol/ 
     def imprimir()
       imprimirAux(@_root)
     end

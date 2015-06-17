@@ -3,9 +3,15 @@
 # and open the template in the editor.
 require_relative "NodoB.rb"
 
+/
+clase para crear arboles binarios
+/
 class Arbol_binario
+  #atributo que es la raiz del arbol
   attr_reader :_root
+  #bloque para metodos privados para el arbol
   private
+    /metodo para realizar una insercion en el arbol/
     def insertAux(pDato,nodo_tmp)
       if(nodo_tmp.dato>pDato)
         if (nodo_tmp.getHizq==nil)
@@ -24,6 +30,7 @@ class Arbol_binario
       end
     end
 
+    /metodo recursivo auxiliar para realizar una busqueda en el arbol/
     def findAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         return true
@@ -42,6 +49,8 @@ class Arbol_binario
       end
     end
 
+    /metodo para encontrar el menor de los mayores desde un nodo
+    cualquiera en el arbol/
     def minMax(pNodo)
       if(pNodo.getHizq==nil)
         return pNodo
@@ -52,6 +61,7 @@ class Arbol_binario
       end
     end
 
+    /metodo recursivo auxiliar para realizar una eliminacion en el arbol/
     def borrarAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         if(pNodo.getHizq==nil)
@@ -97,6 +107,7 @@ class Arbol_binario
       end
     end
 
+    /metodo para realizar una impresion del contenido del arbol/
     def imprimirAux(pNodo)
       if(pNodo==nil)
         return
@@ -106,7 +117,9 @@ class Arbol_binario
       imprimirAux(pNodo.getHder)
     end
   
+  #bloque para metodos public del arbol
   public
+    /metodo para realizar una insercion en el arbol/
     def insertar(pDato)
       if (@_root==nil)
         @_root=NodoB.new(pDato)
@@ -115,6 +128,7 @@ class Arbol_binario
       end
     end
     
+    /metodo para realizar una eliminacion en el arbol/
     def borrar(pDato)
       if(@_root==nil)
         return
@@ -123,6 +137,7 @@ class Arbol_binario
       end
     end
     
+    /metodo para realizar una busqueda en el arbol/
     def buscar(pDato)
       if(@_root.getDato==pDato)
         return true
@@ -131,6 +146,7 @@ class Arbol_binario
       end
     end
 
+    /metodo para realizar una impresion de los datos del arbol/
     def imprimir(*args)
       if(args[0]!=nil)
         imprimirAux(args[0])

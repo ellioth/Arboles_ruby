@@ -3,10 +3,13 @@
 # and open the template in the editor.
 require_relative "NodoB.rb"
 require_relative "metodos_arboles.rb"
-
+/clase para crear un arbol splay, hereda de metodos para arboles /
 class Arbol_splay < MetodosArboles
+  #atributo raiz
   attr_accessor :root,:_ifpadre
+  #bloque para metodos privados 
   private
+    /metodo para relizar el sply de un nodo hasta que llegue a ser la raiz/
     def splay(pDato)
       toRoot=find(pDato)
       if(!@_ifpadre||toRoot==@_root)
@@ -15,7 +18,8 @@ class Arbol_splay < MetodosArboles
           @_root=splayAux(toRoot)
       end
     end
-  
+    
+    /metodo recursivo auxiliar para ir revizando cuando llega a la raiz el nodo/
     def splayAux(toRoot)
       if (toRoot.getPadre==nil)
           return toRoot
@@ -48,6 +52,7 @@ class Arbol_splay < MetodosArboles
      
     end
     
+    /metodo para buscar un nodo en el arbol/
     def find(pDato)
       if (@_root.getDato==pDato)
            @_ifpadre=false
@@ -57,6 +62,8 @@ class Arbol_splay < MetodosArboles
       end
     end
 
+    /metodo recursivo auxiliar para realizar busquedas en el arbol, retorna 
+    nodos que tienen enlaces con el arbol/
     def findAux(pNodo,pDato)
       if(pNodo.getDato==pDato)
         @_ifpadre=true
@@ -78,6 +85,7 @@ class Arbol_splay < MetodosArboles
       end
     end
     
+    /metodo para buscar el menor de los mayores del nodo/
     def minMax(pNodo)
       if(pNodo.getHizq==nil)
         return pNodo
@@ -88,6 +96,7 @@ class Arbol_splay < MetodosArboles
       end
     end
 
+    /metodo recursivo para borrar un nodo del arbol/
     def borrarAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         if(pNodo.getHizq==nil)
@@ -133,6 +142,7 @@ class Arbol_splay < MetodosArboles
       end
     end
 
+    /metodo recurisvo para realizar una insercion en el arbol/
     def insertAux(pDato,nodo_tmp)
       if(nodo_tmp.getDato>pDato)
         if (nodo_tmp.getHizq==nil)
@@ -151,6 +161,7 @@ class Arbol_splay < MetodosArboles
       end
     end
     
+    /metodo para imprimir los nodos del arbol/
     def imprimirAux(pNodo)
       if(pNodo==nil)
         return
@@ -160,31 +171,38 @@ class Arbol_splay < MetodosArboles
       imprimirAux(pNodo.getHder)
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion hacia la izquierda/
     def zig(pNodo)
       return super
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion hacia la derecha/
     def zag(pNodo)
       return super
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion doble a la izq./
     def zigzig(pNodo)
       return super
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion doble a la dere/
     def zagzag(pNodo)
       return super
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion de derecha a izq/
     def zigzag(pNodo)
       return super
     end
     
+    /metodo sobreescrito del padre para realizar una rotacion de izq a derecha/
     def zagzig(pNodo)
       return super
     end
     
   public
+    /metodo para realizar una insercion en el arbol/
     def insertar(pDato)
       if (@_root==nil)
         @_root=NodoB.new(pDato)
@@ -194,6 +212,7 @@ class Arbol_splay < MetodosArboles
       splay(pDato)
     end
     
+    /metodo para realizar una eliminacion en el arbol/
     def borrar(pDato)
       tmp= find(pDato);
       if(tmp==@_root)
@@ -207,6 +226,7 @@ class Arbol_splay < MetodosArboles
       end
     end
     
+    /metodo para realizar una busqueda en el arbol/
     def buscar(pDato)
       if(@_root.getDato==pDato)
         return true
@@ -216,7 +236,8 @@ class Arbol_splay < MetodosArboles
         return @_ifpadre
       end
     end
-
+    
+    /metodo para realizar una impresion de los datos del arbol/
     def imprimir()
       imprimirAux(@_root)
     end

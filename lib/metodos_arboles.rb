@@ -3,8 +3,11 @@
 # and open the template in the editor.
 require_relative "NodoB.rb"
 
+/clase que contiene los metodos que realizan rotaciones/
 class MetodosArboles
+  #bloque para metodos publicos
   public
+    /rotacion siemple a la izquierda para un AVL/
     def rotacionIzq(pNodo)
       padre= pNodo.getPadre
       _hder= pNodo.getHder
@@ -23,7 +26,8 @@ class MetodosArboles
       end
       return _hder
     end
-
+    
+    /rotacion siemple a la derecha para un AVL/
     def rotacionDer(pNodo)
       padre=pNodo.getPadre
       _hizq= pNodo.getHizq
@@ -43,6 +47,7 @@ class MetodosArboles
       return _hizq
     end
 
+    /rotacion doble a la izquierda para un AVL/
     def rotacionDIzq(pNodo)
       padre= pNodo.getPadre
       _hder= pNodo.getHder
@@ -70,6 +75,7 @@ class MetodosArboles
       return toHead
     end
 
+    /rotacion doble a la izquierda para un AVL/
     def rotacionDDer(pNodo)
       padre= pNodo.getPadre
       _hizq= pNodo.getHizq
@@ -97,6 +103,7 @@ class MetodosArboles
       return toHead
     end
     
+    /rotacion siemple a la izquierda para un splay/
     def zig(pNodo)
       padre=pNodo.getPadre()
       hder =pNodo.getHder()
@@ -116,6 +123,7 @@ class MetodosArboles
       end
     end
     
+    /rotacion siemple a la derecha para un splay/
     def zag(pNodo)
       padre= pNodo.getPadre
       hizq= pNodo.getHizq
@@ -135,6 +143,7 @@ class MetodosArboles
       end
     end
     
+    /rotacion doble a la izquierda para un splay/
     def zigzig(pNodo)
       padre= pNodo.getPadre
       abuelo= padre.getPadre
@@ -162,6 +171,7 @@ class MetodosArboles
       end
     end
     
+    /rotacion doble a la derecha para un splay/
     def zagzag(pNodo)
       padre= pNodo.getPadre
       abuelo= padre.getPadre
@@ -189,6 +199,7 @@ class MetodosArboles
       end
     end
     
+    /rotacion de derecha a izquierda para un splay/
     def zigzag(pNodo)
       abuelo=pNodo.getPadre.getPadre
       padre= pNodo.getPadre
@@ -216,6 +227,7 @@ class MetodosArboles
       end
     end
     
+    /rotacion de izquierda a derehca para un splay/
     def zagzig(pNodo)
       abuelo=pNodo.getPadre.getPadre
       padre= pNodo.getPadre
