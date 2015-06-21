@@ -2,11 +2,16 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 require_relative "NodoB.rb"
-
+require_relative "arbol_binario.rb"
 /clase que contiene los metodos que realizan rotaciones/
-class MetodosArboles
+class MetodosArboles < Arbol_binario
   #bloque para metodos publicos
   public
+    /metodo para encontrar el datos mayor entre la comparacion de varios/
+    def mayor(*datos)
+      return datos.max
+    end
+  
     /rotacion siemple a la izquierda para un AVL/
     def rotacionIzq(pNodo)
       padre= pNodo.getPadre
@@ -253,5 +258,27 @@ class MetodosArboles
       if(hder!=nil)
           hder.setPadre(abuelo)
       end
+    end
+    
+    /metodo aobre escrito del padre, Arbol_binario, para realizar busquedas
+    en el arbol/
+    def buscar(*pArgs)
+      return super
+    end
+    
+    /metodo sobre escrito del padre, Arbol_binario, para realizar inserciones/
+    def insertar(*pArgs)
+      return super
+    end
+    
+    /metodo sobre escrito del padre, Arbol_binario, para realizar borrados/
+    def borrar(*pArgs)
+      return super
+    end
+    
+    /metodo sobre escrito del padre, Arbol_binario, para realizar una 
+    impresion del contenido del arbol/
+    def imprimir(*pArgs)
+      super
     end
 end

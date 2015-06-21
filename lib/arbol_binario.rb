@@ -31,20 +31,20 @@ class Arbol_binario
     end
 
     /metodo recursivo auxiliar para realizar una busqueda en el arbol/
-    def findAux(pDato,pNodo)
+    def buscarAux(pDato,pNodo)
       if(pNodo.getDato==pDato)
         return true
       elsif(pNodo.getDato>pDato)
         if(pNodo.getHizq==nil)
           return false
         else
-          return findAux(pDato,pNodo.getHizq)
+          return buscarAux(pDato,pNodo.getHizq)
         end
       else
         if(pNodo.getHder==nil)
           return false
         else
-          return findAux(pDato,pNodo.getHder)
+          return buscarAux(pDato,pNodo.getHder)
         end
       end
     end
@@ -120,29 +120,31 @@ class Arbol_binario
   #bloque para metodos public del arbol
   public
     /metodo para realizar una insercion en el arbol/
-    def insertar(pDato)
+    def insertar(*pDato)
       if (@_root==nil)
-        @_root=NodoB.new(pDato)
+        @_root=NodoB.new(pDato[0])
       else
-        insertAux(pDato,@_root)
+        insertAux(pDato[0],@_root)
       end
+      return @_root
     end
     
     /metodo para realizar una eliminacion en el arbol/
-    def borrar(pDato)
+    def borrar(*pDato)
       if(@_root==nil)
         return
-      else(buscar(pDato))
-        @_root=borrarAux(pDato,@_root)
+      else(buscar(pDato[0]))
+        @_root=borrarAux(pDato[0],@_root)
       end
+      return @_root
     end
     
     /metodo para realizar una busqueda en el arbol/
-    def buscar(pDato)
-      if(@_root.getDato==pDato)
+    def buscar(*pDato)
+      if(@_root.getDato==pDato[0])
         return true
       else
-        return findAux(pDato,@_root)
+        return buscarAux(pDato[0],@_root)
       end
     end
 
@@ -154,3 +156,5 @@ class Arbol_binario
       imprimirAux(@_root)
     end
 end
+
+
